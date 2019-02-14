@@ -65,12 +65,15 @@ for (let i = 0; i < mark.markBills.length; i++) {
     }
 }
 
-
 //Compares average tips between John and Mark
-if (averageTips(john.johnTips) > averageTips(mark.markTips)) { //John tips more
-    console.log(john.fullName + "  tips more. His average tip is " + averageTips(john.johnTips).toFixed(2) + "  and "  + mark.fullName + "'s average tip is " + averageTips(mark.markTips).toFixed(2));
-} else if (averageTips(mark.markTips) > averageTips(john.johnTips)) { //Mark tips more
-    console.log(mark.fullName + " tips more. His average tip is " + averageTips(mark.markTips).toFixed(2) + " and " + john.fullName + "'s average tip is " + averageTips(john.johnTips).toFixed(2));
-} else { //Average tips are the same
-    console.log(john.fullName + " and " + mark.fullName + " tip the exact same! Their average tip is " + averageTips(john.johnTips).toFixed(2));
+function hasHigherTips(name1, name2, tip1, tip2) {
+    if (tip1 > tip2) { //John tips more
+        console.log(name1 + "  tips more. His average tip is " + tip1.toFixed(2) + "  and " + name2 + "'s average tip is " + tip2.toFixed(2));
+    } else if (tip2 > tip1) { //Mark tips more
+        console.log(name2 + " tips more. His average tip is " + tip2.toFixed(2) + " and " + name1 + "'s average tip is " + tip1.toFixed(2));
+    } else { //Average tips are the same
+        console.log(name1 + " and " + name2 + " tip the exact same! Their average tip is " + tip1.toFixed(2));
+    }
 }
+
+hasHigherTips(john.fullName, mark.fullName, averageTips(john.johnTips), averageTips(mark.markTips))
