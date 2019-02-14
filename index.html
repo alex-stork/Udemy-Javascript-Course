@@ -5,9 +5,28 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css">
-    <script src="js/challenge5.js"></script>
+    <script src="js/scratch.js"></script>
 </head>
 <body>
-    <h1>Let's learn some JavaScript</h1>
+    <h1>HOW JAVASCRIPT WORKS BEHIND THE SCENES</h1>
+
+    <p>Every time code is being given to the browser, the browser will interpret the code with a built-in JavaScript engine.
+    That engine will use a parser, reading the code line by line, checking for validity. If there are any errors found, it
+    will stop the execution and return an error.</p>
+    
+    <p>If there are no issues, the parser will create an abstract syntax tree, which will be converted to machine code and then
+    be actually run.</p>
+
+    <h2>Execution Context</h2>
+
+    <p>The execution context is where a piece of code is executed. The default execution context is the Global Execution Context, which is code that is not inside of any function and associated with the global object.</p>
+
+    <p>Code that are in functions will get their own Execution Contexts when they are called. As they are called, they will be added to an Execution Stack. Until a function in that stack is completed, it will remain in the stack. When the function is completed, it will be taken off the stack.</p>
+    
+    <p>There are two phases for the Execution Context: <br> The creation phase, and the Execution Phase</p>
+    <p>In the creation phase, the argument object is created, containing all the arguments that were passed into the function.</p>
+    <p>Code is scanned for function declarations: for each function, a property is created in the Variable Object, pointing to the function.</p>
+    <p>Code is scanned for variable declarations: for each variable, a property is created in the Variable Object, and set to undefined.</p>
+    <h4>This process is referred to as hoisting.</h4>
 </body>
 </html>
