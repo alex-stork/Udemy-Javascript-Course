@@ -2,22 +2,33 @@
 
 Create a tip calculator using objects and loops:
 1. Create an object with an array for the bill values
-
+2. Add a method to calculate the tip
+3. This method should include a loop to iterate over all the paid bills and do the tip calculations
+4. As an output, create 1) a new array containing all tips, and 2) an array containing final paid amounts (bill + tip)
+5. Compare the average tip for two people
 */
 
-let johnBills = [124, 48, 268, 180, 42];
-let johnTips = [];
-let johnTotals = [];
+let john = {
+    fullName: "John Smith",
+    johnBills: [124, 48, 268, 180, 42],
+    johnTips:[],
+    johnTotals: []
+}
 
-let markBills = [77, 375, 110, 45];
-let markTips = [];
-let markTotals = [];
+let mark = {
+    fullName: "Mark Marison",
+    markBills: [77, 375, 110, 45],
+    markTips: [],
+    markTotals: [] 
+}
 
+//Calculates the tip amount only given a bill and a percentage to tip
 function calculateTip(bill, percentage) {
     let tip = bill * percentage;
     return Math.round(tip*1e2)/1e2;
 }
 
+//Calculates average tips given an array
 function averageTips(tipArray) {
     let total = 0;
 
@@ -28,36 +39,38 @@ function averageTips(tipArray) {
     return total/tipArray.length;
 }
 
-for (let i = 0; i < johnBills.length; i++) {
-    if (johnBills[i] > 200) {
-        johnTips.push(calculateTip(johnBills[i], 0.10));
-        johnTotals[i] = johnTips[i] + johnBills[i];
-    } else if(johnBills[i] < 200 && johnBills[i] > 50) {
-        johnTips.push(calculateTip(johnBills[i], 0.15)); 
-        johnTotals[i] = johnTips[i] + johnBills[i];
-    } else if(johnBills[i] < 50) {
-        johnTips.push(calculateTip(johnBills[i], 0.20)); 
-        johnTotals[i] = johnTips[i] + johnBills[i];
+for (let i = 0; i < john.johnBills.length; i++) {
+    if (john.johnBills[i] > 200) {
+        john.johnTips.push(calculateTip(john.johnBills[i], 0.10)); //John tips 10% if his bill is greater than $200
+        john.johnTotals[i] = john.johnTips[i] + john.johnBills[i];
+    } else if(john.johnBills[i] < 200 && john.johnBills[i] > 50) {
+        john.johnTips.push(calculateTip(john.johnBills[i], 0.15)); //15% if his bill is between $50 and $200
+        john.johnTotals[i] = john.johnTips[i] + john.johnBills[i];
+    } else if(john.johnBills[i] < 50) {
+        john.johnTips.push(calculateTip(john.johnBills[i], 0.20)); //20% if his bill is less than $50
+        john.johnTotals[i] = john.johnTips[i] + john.johnBills[i];
     }
 }
 
-for (let i = 0; i < markBills.length; i++) {
-    if (markBills[i] > 300) {
-        markTips.push(calculateTip(markBills[i], 0.25));
-        markTotals[i] = markTips[i] + markBills[i];
-    } else if (markBills[i] < 300 && markBills[i] > 100) {
-        markTips.push(calculateTip(markBills[i], 0.10));
-        markTotals[i] = markTips[i] + markBills[i];
-    } else if (markBills[i] < 100) {
-        markTips.push(calculateTip(markBills[i], 0.20));
-        markTotals[i] = markTips[i] + markBills[i];
+for (let i = 0; i < mark.markBills.length; i++) {
+    if (mark.markBills[i] > 300) {
+        mark.markTips.push(calculateTip(mark.markBills[i], 0.25)); //Mark tips 25% if his bill is greater than $300
+        mark.markTotals[i] = mark.markTips[i] + mark.markBills[i];
+    } else if (mark.markBills[i] < 300 && mark.markBills[i] > 100) { //10% if his bill is between $100 and $300
+        mark.markTips.push(calculateTip(mark.markBills[i], 0.10));
+        mark.markTotals[i] = mark.markTips[i] + mark.markBills[i];
+    } else if (mark.markBills[i] < 100) {
+        mark.markTips.push(calculateTip(mark.markBills[i], 0.20)); //$20% if his bill is less than $100
+        mark.markTotals[i] = mark.markTips[i] + mark.markBills[i];
     }
 }
 
-if (averageTips(johnTips) > averageTips(markTips)) {
-    console.log("John tips more. His average tip is " + averageTips(johnTips).toFixed(2) + " and Mark's average tip is " + averageTips(markTips).toFixed(2));
-} else if (averageTips(markTips) > averageTips(johnTips)) {
-    console.log("Mark tips more. His average tip is " + averageTips(markTips).toFixed(2) + " and John's average tip is " + averageTips(johnTips).toFixed(2));
-} else {
-    console.log("John and Mark tip the exact same! Their average tip is " + averageTips(johnTips).toFixed(2));
+
+//Compares average tips between John and Mark
+if (averageTips(john.johnTips) > averageTips(mark.markTips)) { //John tips more
+    console.log(john.fullName + "  tips more. His average tip is " + averageTips(john.johnTips).toFixed(2) + "  and "  + mark.fullName + "'s average tip is " + averageTips(mark.markTips).toFixed(2));
+} else if (averageTips(mark.markTips) > averageTips(john.johnTips)) { //Mark tips more
+    console.log(mark.fullName + " tips more. His average tip is " + averageTips(mark.markTips).toFixed(2) + " and " + john.fullName + "'s average tip is " + averageTips(john.johnTips).toFixed(2));
+} else { //Average tips are the same
+    console.log(john.fullName + " and " + mark.fullName + " tip the exact same! Their average tip is " + averageTips(john.johnTips).toFixed(2));
 }
