@@ -28,5 +28,7 @@
     <p>Code is scanned for function declarations: for each function, a property is created in the Variable Object, pointing to the function.</p>
     <p>Code is scanned for variable declarations: for each variable, a property is created in the Variable Object, and set to undefined.</p>
     <h4>This process is referred to as hoisting.</h4>
+
+    <p>The scope chain does something similarly! If there is a variable that is found in a function that is calling a variable not in that function, it will look outwards to the parent, and then from there the global scope. </p>
 </body>
 </html>
